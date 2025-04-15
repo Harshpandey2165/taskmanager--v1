@@ -64,7 +64,7 @@ interface UserContextProviderProps {
 }
 
 export const UserContextProvider = ({ children }: UserContextProviderProps) => {
-  const serverUrl = "http://localhost:8000";
+  const serverUrl = "https://taskmanager-v1.onrender.com";
 
   const router = useRouter();
 
