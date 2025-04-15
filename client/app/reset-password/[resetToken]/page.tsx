@@ -3,7 +3,7 @@ import { useUserContext } from "@/context/userContext";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-function page({ params }: { params: { resetToken: string } }) {
+function Page({ params }: { params: { resetToken: string } }) {
   const { resetToken } = params;
   const { resetPassword } = useUserContext();
 
@@ -108,4 +108,4 @@ function page({ params }: { params: { resetToken: string } }) {
   );
 }
 
-export default page;
+export default Page;
