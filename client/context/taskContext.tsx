@@ -38,7 +38,7 @@ interface TasksContextType {
   openModalForEdit: (task: Task) => void;
   openProfileModal: () => void;
   closeModal: () => void;
-  handleInput: (name: keyof Task | 'setTask') => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> | string | Task) => void;
+  handleInput: (field: keyof Task | "setTask") => (value: string | boolean | Task | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
 }
 
 const TasksContext = createContext<TasksContextType | undefined>(undefined);
@@ -268,16 +268,21 @@ export const TasksProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(false);
   };
 
-  type InputName = keyof Task | 'setTask';
-type InputEvent = string | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> | Task;
-
-const handleInput = (name: InputName) => (e: InputEvent) => {
-    if (name === "setTask" && typeof e === 'object' && !('target' in e)) {
-      setTask(e as Task);
-    } else if (typeof e === 'string') {
-      setTask({ ...task, [name]: e });
-    } else if ('target' in e) {
-      setTask({ ...task, [name]: e.target.value });
+  const handleInput = (field: keyof Task | "setTask") => (
+    value: string | boolean | Task | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    if (field === "setTask" && typeof value === "object" && value !== null && !("target" in value)) {
+      setTask(value as Task);
+    } else if (typeof value === "object" && value !== null && "target" in value) {
+      setTask({ ...task, [field]: value.target.value });
+    } else if (field === "completed") {
+      if (typeof value === "boolean") {
+        setTask({ ...task, completed: value });
+      } else if (typeof value === "string") {
+        setTask({ ...task, completed: value === "true" });
+      }
+    } else {
+      setTask({ ...task, [field]: value });
     }
   };
 
