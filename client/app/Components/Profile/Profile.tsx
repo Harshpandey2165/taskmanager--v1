@@ -3,10 +3,12 @@ import { useTasks } from "@/context/taskContext";
 import { useUserContext } from "@/context/userContext";
 import Image from "next/image";
 import React from "react";
+import { Task } from "@/utils/types";
 
 function Profile() {
   const { user } = useUserContext();
   const { tasks, activeTasks, completedTasks, openProfileModal } = useTasks();
+  const pendingTasks = tasks.filter(task => !task.completed);
   return (
     <div className="m-6">
       <div
@@ -15,7 +17,7 @@ function Profile() {
       >
         <div className="relative">
           <Image
-            src={user?.photo}
+            src="/logo.png"
             alt="avatar"
             width={60}
             height={60}
@@ -62,14 +64,14 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className="mt-8">
+      {/* <div className="mt-8">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">Activity</h3>
         <div className="bg-white/80 rounded-xl p-4 shadow-sm">
           <p className="text-sm text-gray-500">Task completion improved by</p>
           <p className="text-2xl font-bold text-[#3AAFAE] mt-1">12% this month</p>
           <p className="text-xs text-gray-400 mt-2">Analysis based on tasks completed in the last 30 days</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
