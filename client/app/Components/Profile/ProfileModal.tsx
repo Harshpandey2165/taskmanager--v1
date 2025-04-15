@@ -2,12 +2,11 @@
 import { useTasks } from "@/context/taskContext";
 import { useUserContext } from "@/context/userContext";
 import useDetectOutside from "@/hooks/useDetectOutside";
-import { badge, check, github, mail } from "@/utils/Icons";
 import Image from "next/image";
 import React from "react";
 
 function ProfileModal() {
-  const ref = React.useRef(null);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   const { closeModal } = useTasks();
   const { user, updateUser, handlerUserInput, userState, changePassword } =
@@ -20,7 +19,7 @@ function ProfileModal() {
     },
   });
 
-  const { name, email, photo } = user;
+  const { name, email } = user;
 
   //state
   const [oldPassword, setOldPassword] = React.useState("");
@@ -45,26 +44,18 @@ function ProfileModal() {
         <div className="mt-4 relative flex justify-between">
           <div className="relative inline-block">
             <Image
-              src={photo}
+              src="/logo.png"
               alt="profile"
               width={80}
               height={80}
               className="rounded-full"
             />
             <div className="absolute bottom-0 right-1 shadow-sm">
-              <span className="text-lg text-blue-400">{badge}</span>
-              <span className="absolute z-20 left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] text-xs text-white">
-                {check}
-              </span>
+              {/* Icon area removed */}
             </div>
           </div>
           <div className="self-end flex items-center gap-2">
-            <button className="flex items-center gap-2 border-2 border-[#323232]/10 rounded-md py-1 px-3 text-xs font-medium text-[#323232]">
-              {github} Github
-            </button>
-            <button className="flex items-center gap-2 border-2 border-[#323232]/10 rounded-md py-1 px-3 text-xs font-medium text-[#323232]">
-              {check} Verified
-            </button>
+            {/* Github and Verified buttons removed */}
           </div>
         </div>
         <div>
@@ -111,7 +102,7 @@ function ProfileModal() {
                 className="w-full py-[0.4rem] pl-9 pr-2 font-medium rounded-lg border-2 border-[#323232]/10"
               />
               <span className="absolute left-0 top-0 bottom-0 flex items-center px-3 text-[#323232]/50">
-                {mail}
+                {/* mail icon removed */}
               </span>
             </div>
           </div>

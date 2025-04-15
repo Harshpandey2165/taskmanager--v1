@@ -15,7 +15,7 @@ export default function Home() {
 
   const { openModalForAdd, priority, completedTasks, setPriority } = useTasks();
 
-  const filtered = filteredTasks(completedTasks, priority);
+  const filtered = filteredTasks(completedTasks as import("@/utils/types").Task[], priority);
 
   useEffect(() => {
     setPriority("all");
