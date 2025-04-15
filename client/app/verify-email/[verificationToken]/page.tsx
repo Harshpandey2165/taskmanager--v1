@@ -2,13 +2,7 @@
 import { useUserContext } from "@/context/userContext";
 import React from "react";
 
-interface Props {
-  params: {
-    verificationToken: string;
-  };
-}
-
-function page({ params }: Props) {
+function Page({ params }: { params: { verificationToken: string } }) {
   const { verificationToken } = params;
 
   const { verifyUser } = useUserContext();
@@ -30,4 +24,4 @@ function page({ params }: Props) {
   );
 }
 
-export default page;
+export default Page;
