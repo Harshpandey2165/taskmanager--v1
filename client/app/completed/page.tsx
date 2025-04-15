@@ -9,8 +9,13 @@ import Filters from "../Components/Filters/Filters";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { container, item } from "@/utils/animations";
+import { GetServerSidePropsContext } from "next";
 
-export default function Home() {
+interface PageProps {
+  params: { resetToken: string }
+}
+
+export default function Home({ params }: PageProps) {
   useRedirect("/login");
 
   const { openModalForAdd, priority, completedTasks, setPriority } = useTasks();
