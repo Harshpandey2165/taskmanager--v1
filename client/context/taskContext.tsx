@@ -51,7 +51,7 @@ export const useTasks = () => {
   return context;
 }
 
-const serverUrl = "http://localhost:8000/api/v1";
+const serverUrl = "https://taskmanager-v1.onrender.com/api/v1";
 
 // Create axios instance with default config
 const api = axios.create({
