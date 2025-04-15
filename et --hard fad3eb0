@@ -1,0 +1,2 @@
+[33mfad3eb0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m refactor: improve sidebar layout and prevent overflow - Adjust sidebar widths and component sizes - Make Profile and RadialChart components more compact - Fix component naming and styling issues
+[33m71fcc25[m Initial commit

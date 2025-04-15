@@ -17,6 +17,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { useTasks } from "@/context/taskContext";
+import Image from "next/image";
 
 export const description = "A radial chart with stacked sections";
 
@@ -44,10 +45,6 @@ function RadialCHart() {
 
   return (
     <Card className="flex flex-col border-2 border-white shadow-none bg-[#EDEDED]">
-      <CardHeader className="items-center pb-0">
-        <CardTitle>Comleted vs Pending Tasks</CardTitle>
-        <CardDescription>Task completion status.</CardDescription>
-      </CardHeader>
       <CardContent className="flex flex-1 items-center pb-0">
         <ChartContainer
           config={chartConfig}
@@ -59,10 +56,7 @@ function RadialCHart() {
             innerRadius={80}
             outerRadius={130}
           >
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
+            content={<ChartTooltipContent />}
             <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
               <Label
                 content={({ viewBox }) => {
@@ -106,15 +100,6 @@ function RadialCHart() {
           </RadialBarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Task completion improved by 12% this month{" "}
-          <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Analysis based on tasks completed in the last 30 days.
-        </div>
-      </CardFooter>
     </Card>
   );
 }
